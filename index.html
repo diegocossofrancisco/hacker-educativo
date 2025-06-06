@@ -3,55 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Você foi hackeado</title>
+  <title>VOCÊ FOI HACKEADO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #0f0f0f;
-      color: #fff;
-      font-family: 'Courier New', Courier, monospace;
       margin: 0;
-      padding: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at center, #000000 0%, #060606 100%);
+      color: #00ffcc;
+      font-family: 'Share Tech Mono', monospace;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
       text-align: center;
+      overflow: hidden;
     }
 
-    h1 {
+    .glitch {
       font-size: 2em;
-      margin-bottom: 10px;
+      position: relative;
+      color: #00ffcc;
+      animation: flicker 1.5s infinite alternate;
     }
 
-    p {
-      font-size: 1.2em;
-      margin: 10px 20px;
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      opacity: 0.6;
     }
 
-    .emoji {
-      font-size: 5em;
-      margin-bottom: 20px;
+    .glitch::before {
+      top: -2px;
+      color: red;
+      animation: glitchTop 1s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      top: 2px;
+      color: blue;
+      animation: glitchBottom 1s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchTop {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-2px); }
+      40% { transform: translateX(-5px); }
+      60% { transform: translateX(2px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(2px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
     }
 
     .footer {
       position: absolute;
       bottom: 10px;
       font-size: 0.8em;
-      color: #888;
+      color: #555;
+    }
+
+    .alert-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px dashed #00ffcc;
+      color: #ff5555;
+      background-color: rgba(0, 0, 0, 0.3);
+      font-size: 1em;
+      animation: flicker 2s infinite;
     }
   </style>
   <script>
     window.onload = function() {
-      alert("⚠️ VOCÊ FOI HACKEADO!\n\n(Brincadeira... mas podia ser real!)\nNão clique em qualquer link que você vê por aí.\n#SegurançaÉTudo");
+      alert("⚠️ VOCÊ FOI HACKEADO!\n\n(Brincadeira... mas podia ser real!)\nNão clique em qualquer link que você vê por aí.");
     }
   </script>
 </head>
 <body>
-  <div class="emoji">💀</div>
-  <h1>Você foi hackeado!</h1>
-  <p>(Mentirinha.) Mas cuidado, o próximo link pode não ser tão bonzinho.</p>
-  <p><strong>Este é um alerta educativo sobre segurança digital.</strong></p>
-  <div class="footer">Feito por um hacker do bem 🧠💻</div>
+  <div class="glitch" data-text="VOCÊ FOI HACKEADO">VOCÊ FOI HACKEADO</div>
+  <div class="alert-box">Brincadeira... mas cuidado com o próximo link 🕶️</div>
+  <div class="footer">Mensagem enviada pela DedSec 👾</div>
 </body>
 </html>
